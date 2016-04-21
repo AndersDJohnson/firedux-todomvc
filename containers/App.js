@@ -7,24 +7,25 @@ import * as TodoActions from '../actions'
 
 class App extends Component {
   render() {
-    const { todos, actions } = this.props
+    const { todos, actions, firedux } = this.props
+    console.log('App props', this.props)
     return (
       <div>
         <Header addTodo={actions.addTodo} />
-        <MainSection todos={todos} actions={actions} />
+        <MainSection todos={todos} actions={actions} firedux={firedux} />
       </div>
     )
   }
 }
 
 App.propTypes = {
-  todos: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  firedux: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {
   return {
-    todos: state.todos
+    firedux: state.firedux
   }
 }
 

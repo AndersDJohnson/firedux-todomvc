@@ -1,4 +1,5 @@
 import { ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO, COMPLETE_ALL, CLEAR_COMPLETED } from '../constants/ActionTypes'
+import firedux from '../store/firedux'
 
 const initialState = [
   {
@@ -11,14 +12,16 @@ const initialState = [
 export default function todos(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO:
-      return [
-        {
-          id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
-          completed: false,
-          text: action.text
-        }, 
-        ...state
-      ]
+      console.log('adding todo', action)
+      // return () => {
+      //   console.log('pushing...', action)
+      //   firedux.push('todos', {
+      //     id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
+      //     completed: false,
+      //     text: action.text
+      //   })
+      // }
+      return state
 
     case DELETE_TODO:
       return state.filter(todo =>

@@ -3,6 +3,8 @@ import TodoItem from './TodoItem'
 import Footer from './Footer'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters'
 
+import store from '../store'
+
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,
   [SHOW_ACTIVE]: todo => !todo.completed,
@@ -24,7 +26,10 @@ class MainSection extends Component {
   }
 
   renderToggleAll(completedCount) {
-    const { todos, actions } = this.props
+    const state = store.getState()
+    const { actions } = this.props
+    var { todos } = this.props.firedux.data
+    todos = todos ? Object.values(todos) : []
     if (todos.length > 0) {
       return (
         <input className="toggle-all"
@@ -36,7 +41,8 @@ class MainSection extends Component {
   }
 
   renderFooter(completedCount) {
-    const { todos } = this.props
+    var { todos } = this.props.firedux.data
+    todos = todos ? Object.values(todos) : []
     const { filter } = this.state
     const activeCount = todos.length - completedCount
 
@@ -52,8 +58,10 @@ class MainSection extends Component {
   }
 
   render() {
-    const { todos, actions } = this.props
+    const { actions } = this.props
     const { filter } = this.state
+    var { todos } = this.props.firedux.data
+    todos = todos ? Object.values(todos) : []
 
     const filteredTodos = todos.filter(TODO_FILTERS[filter])
     const completedCount = todos.reduce((count, todo) =>
@@ -76,8 +84,8 @@ class MainSection extends Component {
 }
 
 MainSection.propTypes = {
-  todos: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  firedux: PropTypes.object.isRequired
 }
 
 export default MainSection
