@@ -9,22 +9,6 @@ import firedux from './store/firedux'
 
 firedux.watch('todos')
 
-firedux.get('todos')
-.then(({snapshot}) => {
-  const val = snapshot.val()
-  if (val) return
-
-  firedux.push('todos',
-    {
-      text: 'Use Redux from Firebase',
-      completed: false
-    }
-  )
-  .then((id) => {
-    console.log('pushed value', id)
-  })
-})
-
 render(
   <Provider store={store}>
     <App />
