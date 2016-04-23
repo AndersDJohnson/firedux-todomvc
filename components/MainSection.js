@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import TodoItem from './TodoItem'
 import Footer from './Footer'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters'
-
+import { firebaseToArray } from '../utils'
 import store from '../store'
 
 const TODO_FILTERS = {
@@ -29,7 +29,7 @@ class MainSection extends Component {
     const state = store.getState()
     const { actions } = this.props
     var { todos } = this.props.firedux.data
-    todos = todos ? Object.values(todos) : []
+    todos = firebaseToArray(todos)
     if (todos.length > 0) {
       return (
         <input className="toggle-all"
@@ -42,7 +42,7 @@ class MainSection extends Component {
 
   renderFooter(completedCount) {
     var { todos } = this.props.firedux.data
-    todos = todos ? Object.values(todos) : []
+    todos = firebaseToArray(todos)
     const { filter } = this.state
     const activeCount = todos.length - completedCount
 
@@ -61,7 +61,7 @@ class MainSection extends Component {
     const { actions } = this.props
     const { filter } = this.state
     var { todos } = this.props.firedux.data
-    todos = todos ? Object.values(todos) : []
+    todos = firebaseToArray(todos)
 
     const filteredTodos = todos.filter(TODO_FILTERS[filter])
     const completedCount = todos.reduce((count, todo) =>

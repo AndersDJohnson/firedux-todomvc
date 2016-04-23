@@ -8,7 +8,6 @@ import * as TodoActions from '../actions'
 class App extends Component {
   render() {
     const { todos, actions, firedux } = this.props
-    console.log('App props', this.props)
     return (
       <div>
         <Header addTodo={actions.addTodo} />
