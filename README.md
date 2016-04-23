@@ -2,7 +2,7 @@
 
 [TodoMVC] example with [firedux][] ([Firebase] + [Redux]) and [React].
 
-https://andrz.me/firedux-todomvc/
+https://andrz.me/firedux-todomvc/ for a random session, or https://andrz.me/firedux-todomvc/#anySessionKey (with any value for `anySessionKey`) to start named session or restore an existing one.
 
 Initially based on https://github.com/reactjs/redux/tree/master/examples/todomvc.
 
