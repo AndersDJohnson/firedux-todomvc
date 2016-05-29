@@ -18,8 +18,7 @@ export function deleteTodo(id) {
 export function editTodo(id, text) {
   return () => {
     firedux.update(`todos/${id}`, {
-      text,
-      completed
+      text
     })
   }
 }
