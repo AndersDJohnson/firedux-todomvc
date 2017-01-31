@@ -6,7 +6,7 @@
     "start": "node server.js",
     "test": "cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register --require ./test/setup.js",
     "test:watch": "npm test -- --watch",
-    "build": "webpack && cp index.html dist",
+    "build": "webpack && cp index.html dist && cp index.browser.html dist",
     "build:browser": "BABEL_ENV=production webpack --config webpack.browser.config.js",
     "deploy": "gh-pages -d dist"
   },
