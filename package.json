@@ -6,8 +6,8 @@
     "start": "node server.js",
     "test": "cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register --require ./test/setup.js",
     "test:watch": "npm test -- --watch",
-    "build": "webpack && cp index.html dist && cp index.browser.html dist",
-    "build:browser": "BABEL_ENV=production webpack --config webpack.browser.config.js",
+    "build": "webpack && cp index.html dist",
+    "build:browser": "BABEL_ENV=production webpack --config webpack.browser.config.js && cp index.browser.html dist && rm -rf dist/node_modules && mkdir dist/node_modules && cp -r node_modules/{firedux,firebase,lodash,updeep} dist/node_modules",
     "deploy": "gh-pages -d dist"
   },
   "repository": {
